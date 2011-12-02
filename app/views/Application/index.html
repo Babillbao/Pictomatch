@@ -1,4 +1,7 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Drawing Room' /}
 
-#{welcome /}
+<h1>List of rooms :</h1>
+<ul>
+	<li>${room.name} (${room.nbMaxUser} users max)</li>
+</ul>
