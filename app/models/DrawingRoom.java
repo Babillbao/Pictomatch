@@ -1,6 +1,11 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -16,6 +21,9 @@ public class DrawingRoom extends BaseModel {
 
 	@Required
 	public int nbMaxUser;
+	
+	@OneToMany(mappedBy="currentRoom", cascade=CascadeType.ALL)
+	public List<User> users = new ArrayList();
 	
 	public DrawingRoom() {
 		this("Test", 10);

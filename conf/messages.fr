@@ -1,1 +1,16 @@
 #
+
+# USER model
+User = Utilisateur
+Users = Utilisateurs
+login = Identifiant Utilisateur
+password = Mot de passe
+email = Adresse Email
+currentRoom = Salle de jeu courante
+isAdmin = Administrateur ?
+
+#DRAWING ROOM model
+DrawingRoom = Salle de jeu
+DrawingRooms = Salles de jeux
+name = Nom
+nbMaxUser = Nombre maximum de joueurs
