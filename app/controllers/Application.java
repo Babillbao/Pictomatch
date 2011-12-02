@@ -18,6 +18,7 @@ public class Application extends Controller {
 
     
     public static void showRoom(Long id) {
-        
+        DrawingRoom selectedRoom = DrawingRoom.findById(id);
+        render(selectedRoom);
     }
 }

@@ -1,0 +1,7 @@
+.container > div {
+    padding-top: 50px;	
+}
+
+body > div.container img {
+	width: 100%
+}

@@ -1,18 +1,21 @@
 #{extends 'main.html' /}
 #{set title:'PictoMatch' /}
 
-<h1>PictoMatch !</h1>
+<div id="rooms">
+	<h2>List of available rooms</h2>
+	<ul>
+		#{list items:availableRooms, as:'room'}
+		<li>${room.name} - <a href="/showRoom?id=${room.id}">+ Infos</a></li>
+		#{/list}
+	</ul>
+</div>
 
-<h2>List of available rooms</h2>
-<ul>
-	#{list items:availableRooms, as:'room'}
-	<li>${room.name} : ${room.nbMaxUser} players max - <a href="/subscribeRoom?id=${room.id}">Subscribe</a></li>
-	#{/list}
-</ul>
 
-<h2>List of registered users</h2>
-<ul>
-	#{list items:registeredUsers, as:'user'}
-	<li>${user.login} (${user.email})</li>
-	#{/list}
-</ul>
+<div id="users">
+	<h2>List of registered users</h2>
+	<ul>
+		#{list items:registeredUsers, as:'user'}
+		<li>${user.login} (${user.email})</li>
+		#{/list}
+	</ul>
+</div>
