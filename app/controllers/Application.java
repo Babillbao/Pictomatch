@@ -10,8 +10,14 @@ import models.*;
 public class Application extends Controller {
 
     public static void index() {
-        DrawingRoom room = new DrawingRoom();
-    	render(room);
+        List<DrawingRoom> availableRooms = DrawingRoom.find("order by name ASC").fetch();
+        List<User> registeredUsers = User.find("order by login ASC").fetch();
+        
+    	render(availableRooms, registeredUsers);
     }
 
+    
+    public static void showRoom(Long id) {
+        
+    }
 }
