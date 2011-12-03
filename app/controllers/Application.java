@@ -7,7 +7,7 @@ import java.util.*;
 
 import models.*;
 
-public class Application extends Controller {
+public class Application extends LoggedApplication {
 
     public static void index() {
         List<DrawingRoom> availableRooms = DrawingRoom.find("order by name ASC").fetch();

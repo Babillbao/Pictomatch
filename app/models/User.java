@@ -15,6 +15,7 @@ import play.data.validation.Required;
 public class User extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
+	public static final String CACHE_KEY = "_user";
 
 	@Required
 	public String login;
