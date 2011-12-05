@@ -14,23 +14,18 @@ import play.mvc.With;
 public class LoggedApplication extends Controller {
 
 	/**
-	 * Stores the connected user in the cache for 20mn.
-	 */
-	@Before
-	static void setConnectedUser() {
-		if (Security.isConnected()) {
-			User user = User.find("byLogin", Security.connected()).first();
-			Cache.set(session.getId() + User.CACHE_KEY, user, "20mn");
-		}
-	}
-
-	/**
 	 * Retrieves the connected user.
 	 * @return the connected user or null if it does not exist.
 	 */
 	static User getConnectedUser() {
 		if (Security.isConnected()) {
-			return (User) Cache.get(session.getId() + User.CACHE_KEY);
+			User user = Cache.get(session.getId() + User.CACHE_KEY, User.class);
+			if (user == null) {
+				user = User.find("byLogin", Security.connected()).first();
+				Cache.set(session.getId() + User.CACHE_KEY, user, "20mn");
+			}
+			
+			return user;
 		}
 		
 		return null;
