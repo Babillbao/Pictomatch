@@ -1,3 +1,7 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+
+
+#Weird thing of CRUD module : needs a key here for unique constraint error
+validation.unique = Should be unique in database

@@ -9,7 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.data.validation.Email;
+import play.data.validation.Password;
 import play.data.validation.Required;
+import play.data.validation.Unique;
 
 @Entity
 public class User extends BaseModel {
@@ -18,12 +20,16 @@ public class User extends BaseModel {
 	public static final String CACHE_KEY = "_user";
 
 	@Required
+	@Unique
 	public String login;
 
 	@Required
+	@Password
 	public String password;
 	
+	@Required
 	@Email
+	@Unique
 	public String email;
 	
 	@ManyToOne

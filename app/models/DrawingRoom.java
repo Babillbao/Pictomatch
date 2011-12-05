@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import play.data.validation.Required;
+import play.data.validation.Unique;
 
 @Entity
 public class DrawingRoom extends BaseModel {
@@ -17,6 +18,7 @@ public class DrawingRoom extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
 	@Required
+	@Unique
 	public String name;
 
 	@Required
