@@ -14,7 +14,7 @@ public class Security extends Secure.Security {
 	 * This method defines how to authenticate users.
 	 * @param login user name
 	 * @param password user password
-	 * @return true if the user is authenticate, false otherwise
+	 * @return true if the user is authenticated, false otherwise
 	 */
 	static boolean authenticate(final String login, final String password) {
 		boolean result = User.count("byLoginAndPassword", login, password) != 0;
@@ -31,7 +31,7 @@ public class Security extends Secure.Security {
 	static boolean check(String profile) {
 		if(ADMIN_PROFILE_CHECK.equals(profile) && Security.isConnected()) {
 			User user = User.find("byLogin", Security.connected()).first();
-			return user.isAdmin;
+			return (user != null && user.isAdmin);
 		}
 		
 		return false;

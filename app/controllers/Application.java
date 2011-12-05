@@ -13,7 +13,9 @@ public class Application extends LoggedApplication {
         List<DrawingRoom> availableRooms = DrawingRoom.find("order by name ASC").fetch();
         List<User> registeredUsers = User.find("order by login ASC").fetch();
         
-    	render(availableRooms, registeredUsers);
+        User connectedUser = getConnectedUser();
+        
+    	render(availableRooms, registeredUsers, connectedUser);
     }
 
     
