@@ -2,21 +2,21 @@
 #{set title:'PictoMatch' /}
 
 <div id="connected">
-Connected as ${connectedUser.login}.
+&{"lbl_a_connected_as"} ${connectedUser.login}.
 </div>
 
 <div id="rooms">
-	<h2>List of available rooms</h2>
+	<h2>&{"lbl_a_available_rooms_list"}</h2>
 	<ul>
 		#{list items:availableRooms, as:'room'}
-		<li>${room.name} - <a href="/showRoom?id=${room.id}">+ Infos</a></li>
+		<li>${room.name} - <a href="/showRoom?id=${room.id}">&{"lbl_a_more_info"}</a></li>
 		#{/list}
 	</ul>
 </div>
 
 
 <div id="users">
-	<h2>List of registered users</h2>
+	<h2>&{"lbl_a_registered_users_list"}</h2>
 	<ul>
 		#{list items:registeredUsers, as:'user'}
 		<li>${user.login} (${user.email})</li>
