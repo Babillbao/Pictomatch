@@ -17,10 +17,4 @@ public class Application extends LoggedApplication {
         
     	render(availableRooms, registeredUsers, connectedUser);
     }
-
-    
-    public static void showRoom(Long id) {
-        DrawingRoom selectedRoom = DrawingRoom.findById(id);
-        render(selectedRoom);
-    }
 }

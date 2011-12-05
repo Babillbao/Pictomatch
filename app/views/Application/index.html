@@ -1,5 +1,4 @@
 #{extends 'main.html' /}
-#{set title:'PictoMatch' /}
 
 <div id="connected">
 &{"lbl_a_connected_as"} ${connectedUser.login}.
@@ -9,7 +8,7 @@
 	<h2>&{"lbl_a_available_rooms_list"}</h2>
 	<ul>
 		#{list items:availableRooms, as:'room'}
-		<li>${room.name} - <a href="/showRoom?id=${room.id}">&{"lbl_a_more_info"}</a></li>
+		<li>${room.name} (${room.users.size()} &{"lbl_a_user_s"} / ${room.nbMaxUser})- <a href="/room/join/${room.id}">&{"lbl_a_join_room"}</a></li>
 		#{/list}
 	</ul>
 </div>

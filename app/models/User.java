@@ -48,4 +48,10 @@ public class User extends BaseModel {
 	public String toString() {
 		return login;
 	}
+	
+	
+	public void join(DrawingRoom room) {
+		currentRoom = room;
+		save();
+	}
 }

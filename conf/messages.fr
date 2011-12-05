@@ -4,10 +4,11 @@
 lbl_a_available_rooms_list = Liste des salles de jeux disponibles
 lbl_a_connected_as = Connecté en tant que
 lbl_a_drawing_room = Salle de jeu
+lbl_a_join_room = Rejoindre la salle de jeu
 lbl_a_more_info = + Infos
 lbl_a_nb_max_players = Nombre de joueurs max
 lbl_a_registered_users_list = Liste des utilisateurs enregistrés
-
+lbl_a_user_s = utilisateur(s)
 
 
 # USER model

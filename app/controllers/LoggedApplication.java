@@ -25,9 +25,25 @@ public class LoggedApplication extends Controller {
 				Cache.set(session.getId() + User.CACHE_KEY, user, "20mn");
 			}
 			
-			return user;
+			if(user != null) {
+				return user.merge();
+			}
 		}
 		
 		return null;
+	}
+	
+
+	/**
+	 * Refresh the connected user object in cache.
+	 * @return the connected user or null if it does not exist.
+	 */
+	static void refreshConnectedUser(User connectedUser) {
+		if (Security.isConnected()
+				&& connectedUser != null
+				&& Security.connected().equals(connectedUser.login)) {
+				
+			Cache.set(session.getId() + User.CACHE_KEY, connectedUser, "20mn");
+		}
 	}
 }
