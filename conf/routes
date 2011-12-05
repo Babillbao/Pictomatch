@@ -8,10 +8,16 @@ GET     /                                       Application.index
 # Import CRUD routes
 *      /admin                                   module:crud
 
-# DrawingRooms
-GET       /room/join/{id}                       DrawingRoomCtrl.join
-GET       /room/show                            DrawingRoomCtrl.showUserCurrentRoom
+# DrawingRooms - General
+GET     /room/join/{id}                       DrawingRoomCtrl.join
+GET     /room/show                            DrawingRoomCtrl.showUserCurrentRoom
 
+# DrawingRooms - Chat
+WS      /room/chat/socket/subscribe           WebSocketChatCtrl.subscribeSocket
+GET     /room/chat/ajax/subscribe             AjaxChatCtrl.subscribeAjax
+GET     /room/chat/ajax/listen                AjaxChatCtrl.listen
+POST    /room/chat/ajax/write              	  AjaxChatCtrl.write
+GET     /room/chat/ajax/unsubscribe           AjaxChatCtrl.unsubscribe
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
