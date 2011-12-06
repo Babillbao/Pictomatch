@@ -2,7 +2,7 @@ html, body {
     background: #ddd;
 }
 
-#thread {
+#pm_chat_thread {
     position: fixed;
     top: 150px;
     left: 14px;
@@ -14,12 +14,12 @@ html, body {
     overflow-y: scroll;
 }
 
-.message {
+.pm_chat_message {
     border-bottom: 1px solid #efefef;
     position: relative;
 }
 
-.message h2 {
+.pm_chat_message h2 {
     background: #efefef;
     color: #000;
     font-size: 12px;
@@ -35,35 +35,35 @@ html, body {
     border-right: 1px solid #ccc;
 }
 
-.message p {
+.pm_chat_message p {
     font-size: 12px;
     padding: 5px;
     margin: 0 0 0 110px;
 }
 
-.message.you * {
+.pm_chat_message.pm_chat_you * {
     background: #FFFFCC;
 }
 
-.message.notice * {
+.pm_chat_message.pm_chat_notice * {
     background: #D9E7FB;
 }
 
-.message.important * {
+.pm_chat_message.pm_chat_important * {
     background: #c00;
     color: #fff;
 }
 
-.message.notice h2 {
+.pm_chat_message.pm_chat_notice h2 {
     visibility: hidden;
 }
 
-.message.notice p {
+.pm_chat_message.pm_chat_notice p {
     margin: 0;
     padding-left: 115px;
 }
 
-#newMessage {
+#pm_chat_new_message {
     position: fixed;
     left: 14px;
     right: 50%;
@@ -71,7 +71,7 @@ html, body {
     height: 60px;
 }
 
-#newMessage #message {
+#pm_chat_new_message #pm_chat_message {
     width: 80%;
     padding: 5px;
 }
