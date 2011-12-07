@@ -9,9 +9,17 @@
         #{stylesheet 'bootstrap.min.css' /}
         #{stylesheet 'prettify.css' /}
         #{stylesheet 'main.css' /}
+		#{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/x-icon" href="@{'/public/images/favicon.ico'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        #{get 'moreScripts' /}
+		#{script 'jquery-1.6.4.min.js' /}
+        #{script 'bootstrap-scrollspy.js' /}
+        #{script 'bootstrap-twipsy.js' /}
+        #{script 'bootstrap-dropdown.js' /}
+        #{script 'prettify.js' /}
+		#{script 'templating.js' /}
+        #{script 'jquery.scrollTo-min.js' /}
+		#{script 'pictomatch-init.js' /}
+		#{get 'moreScripts' /}
     </head>
     <body>
 		<div class="topbar" data-scrollspy="scrollspy">

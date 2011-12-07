@@ -1,0 +1,62 @@
+#{set 'moreStyles' }
+	<link rel="stylesheet" type="text/css" href="/public/stylesheets/pictomatch-chat.css" />
+#{/set}
+
+<h3>You are now chatting as ${_connectedUser.login} <a href="#" id="pm_chat_cmd_unsubscribe">Leave the chat room</a></h3> 
+<div id="pm_chat_container">
+
+	<div id="pm_chat_thread">
+	    <script type="text/html" id="pm_chat_message_tmpl">
+        <% if(event.type == 'message') { %>
+            <div class="pm_chat_message <%= event.userLogin == '${_connectedUser.login}' ? 'pm_chat_you' : '' %>">
+                <h2><%= event.userLogin %></h2>
+                <p>
+                    <%= event.text %>
+                </p>
+            </div>
+        <% } %>
+        <% if(event.type == 'subscribe') { %>
+            <div class="pm_chat_message pm_chat_notice">
+                <h2></h2>
+                <p>
+                    <%= event.userLogin %> joined the room
+                </p>
+            </div>
+        <% } %>
+        <% if(event.type == 'unsubscribe') { %>
+            <div class="pm_chat_message pm_chat_notice">
+                <h2></h2>
+                <p>
+                    <%= event.userLogin %> left the room
+                </p>
+            </div>
+        <% } %>
+        <% if(event.type == 'quit') { %>
+            <div class="pm_chat_message pm_chat_important">
+                <h2></h2>
+                <p>
+                    You are now disconnected!
+                </p>
+            </div>
+        <% } %>
+    </script>
+	</div>
+	
+	<div id="pm_chat_new_message">
+	    <input type="text" id="pm_chat_message" autocomplete="off">
+	    <input type="submit" value="Send" id="pm_chat_cmd_send">
+	</div>
+	
+	<!-- Model - URL -->
+	<input name="url.subscribeSocket" 	value="@@{WebSocketChatCtrl.subscribeSocket(_selectedRoom.id, _connectedUser.login)}"	type="hidden" class="pm-data" />
+	<input name="url.subscribeAjax" 	value="@@{AjaxChatCtrl.subscribeAjax(_selectedRoom.id, _connectedUser.login)}" 			type="hidden" class="pm-data" />
+	<input name="url.write" 			value="@@{AjaxChatCtrl.write(_selectedRoom.id, _connectedUser.login)}" 					type="hidden" class="pm-data" />
+	<input name="url.unsubscribe" 		value="@@{AjaxChatCtrl.unsubscribe(_selectedRoom.id, _connectedUser.login)}" 			type="hidden" class="pm-data" />
+	<input name="url.home" 				value="@@{Application.index}" 															type="hidden" class="pm-data" />
+	<input name="url.listen"	 		value="@@{AjaxChatCtrl.listen(_selectedRoom.id)}"							 			type="hidden" class="pm-data" />
+</div>
+
+#{set 'moreScripts' }
+	<script src="/public/javascripts/pictomatch-chat.js"></script>
+#{/set}
+
