@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+
+#{set 'moreStyles' }
+	<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/secure.css'}" />
+#{/set}
+
+<div class="container">
+<div class="content">
+<div class="row">
+	<div class="span9">&nbsp;
+	</div>
+	<div class="span4">
+		<div id="login">
+			
+			<h1>&{'secure.title'}</h1>
+				
+			#{form @authenticate(), class:'form-stacked'}
+				
+				#{if flash.error}
+					<p class="alert-message error">
+						&{flash.error}
+					</p>
+				#{/if}
+				#{elseif flash.success}
+					<p class="alert-message success">
+						&{flash.success}
+					</p>
+				#{/elseif}
+				#{else flash.success}
+					<p class="alert-message-empty">
+						
+					</p>
+				#{/else}
+			
+				<div id="username-field" class="clearfix #{if flash.error} error #{/if}">
+					<label for="username">&{'secure.username'}</label>
+					<input type="text" name="username" id="username" value="${flash.username}"/>
+				</div>
+				<div id="password-field" class="clearfix #{if flash.error} error #{/if}">
+					<label for="password">&{'secure.password'}</label>
+					<input type="password" name="password" id="password" value=""/>
+				</div>
+				<div id="remember-field" class="clearfix">
+					<input type="hidden" name="remember" id="remember" value="true" />
+				</div>
+				<div id="signin-field">
+					<input type="submit" id="signin" value="&{'secure.signin'}" />
+				</div>
+			#{/form}
+		</div>
+	</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,38 @@
+
+      /* Override some defaults */
+      html, body {
+        background-color: #ffffcc;
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+
+      /* The content wrapper */
+      .content {
+        padding: 60px;
+        margin: 0 -60px; /* negative indent the amount of the padding to maintain the grid system */
+        background-image: url('/public/images/home_background.jpg');
+		background-repeat: no-repeat;
+      	min-height: 541px;
+      }
+	
+      #signin-field {
+        padding: 20px;
+        text-align: right;
+      }
+      
+      /*
+      #signin-field #signin {
+        background-image: url('/public/images/home_signin_bt.gif');
+		background-repeat: no-repeat;
+      }
+	
+      #signin-field #signin:hover {
+        background-image: url('/public/images/home_signin_bt_hover.gif');
+		background-repeat: no-repeat;
+      }
+      */
+      
+      .alert-message-empty {
+      	padding: 30px;
+      }

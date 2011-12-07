@@ -28,6 +28,13 @@ public class Security extends Secure.Security {
 		Application.index();
 	}
 	
+	/**
+	 * Url to redirect after log out.
+	 */
+	/*static void onDisconnected() {
+		Security.login();
+	}*/
+	
 	static boolean check(String profile) {
 		if(ADMIN_PROFILE_CHECK.equals(profile) && Security.isConnected()) {
 			User user = User.find("byLogin", Security.connected()).first();
