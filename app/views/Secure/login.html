@@ -44,11 +44,50 @@
 					<input type="hidden" name="remember" id="remember" value="true" />
 				</div>
 				<div id="signin-field">
-					<input type="submit" id="signin" value="&{'secure.signin'}" />
+					<input type="submit" id="signin" class="btn primary" value="&{'secure.signin'}" />
 				</div>
 			#{/form}
+			<div id="register-field">
+				<a href="#" class="btn" data-controls-modal="register-modal" data-backdrop="static">Create an account</a>
+				
+				<div id="register-modal" class="modal hide fade" style="display: none; ">
+		            #{form action:@Users.register(), id:'pm_home_form_register', enctype:'multipart/form-data', class:'form-stacked'}
+			            <div class="modal-header">
+			              <a href="#" class="close">X</a>
+			              <h3>Create an account</h3>
+			            </div>
+			            <div id="pm_home_form_body_register" class="modal-body">
+			                #{crud.form class:'models.User'}
+			                	#{crud.custom 'currentRoom'} #{/crud.custom}
+			                	#{crud.custom 'isAdmin'} #{/crud.custom}
+			                #{/crud.form}
+			            </div>
+			            <div class="modal-footer">
+			              <input type="submit" id="register" class="btn primary" value="Create" />
+			            </div>
+		            #{/form}
+		          </div>
+			</div>
 		</div>
 	</div>
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+	// Capture Form Submit Event
+    $('#pm_home_form_register').submit(function() {
+    	console.log("test");
+		var formdata = $("#pm_home_form_register").serialize(); 
+		$.post('@{Users.register()}', formdata, function(result) {
+			$("#pm_home_form_body_register").html(result);
+		}); 
+
+    	// Don’t let the browser redirect
+    	return false;
+    });
+});
+</script>
