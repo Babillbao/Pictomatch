@@ -1,0 +1,56 @@
+
+	/* Override some defaults */
+	html, body {
+	    background-color: #ffffcc;
+	}
+	
+	/* The content wrapper */
+	#pm_home_container .content {
+	    padding: 60px;
+	    margin: 0 -60px; /* negative indent the amount of the padding to maintain the grid system */
+	    background-image: url('/public/images/home_background.jpg');
+	    background-repeat: no-repeat;
+	    min-height: 541px;
+	}
+	
+	#pm_home_container #signin-field {
+	    padding: 20px;
+	    text-align: right;
+	}
+	#pm_home_container #register-field {
+	    padding: 20px;
+	    text-align: right;
+	}
+	    
+	#pm_home_container .alert-message-empty {
+		padding: 30px;
+	}
+	  
+	#pm_home_register_crud_content .crudField {
+		padding: 10px;
+	}
+	
+	#pm_home_register_crud_content .crud_hidden {
+	    display: none;
+	}
+	
+	#pm_home_register_crud_content .crudField .error {
+		color: #c00;
+		padding-left: 10px;
+		font-size: 80%;
+	}
+	
+	#pm_home_register_crud_content .crudField .hasError {
+		color: #c00;
+	}
+	
+	#pm_home_register_crud_content .crudField select[multiple] {
+		max-height: 100px;
+	}
+	
+	#pm_home_register_crud_content .crudField .crudHelp {
+		font-size: 70%;
+		color: #888;
+	}
+	  
+	  

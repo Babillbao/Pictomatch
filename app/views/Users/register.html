@@ -1,4 +1,12 @@
-#{crud.form class:'models.User'}
-	#{crud.custom 'currentRoom'} #{/crud.custom}
-	#{crud.custom 'isAdmin'} #{/crud.custom}
-#{/crud.form}
+<div id="pm_home_register_crud_content">
+	#{if error}
+		<div class="alert-message error">
+		    ${error ?: flash.error}
+		</div>
+	#{/if}
+
+	#{crud.form class:'models.User'}
+		#{crud.custom 'currentRoom'} #{/crud.custom}
+		#{crud.custom 'isAdmin'} #{/crud.custom}
+	#{/crud.form}
+</div>

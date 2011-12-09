@@ -1,20 +1,17 @@
 #{extends 'main.html' /}
 
 #{set 'moreStyles' }
-	<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/secure.css'}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/pictomatch-home.css'}" />
 #{/set}
 
-<div class="container">
+<div id="pm_home_container" class="container">
 <div class="content">
 <div class="row">
-	<div class="span9">&nbsp;
-	</div>
+	<div class="span9">&nbsp;</div>
 	<div class="span4">
 		<div id="login">
-			
-			<h1>&{'secure.title'}</h1>
 				
-			#{form @authenticate(), class:'form-stacked'}
+			#{form @authenticate(), id:'pm_home_login_form', class:'form-stacked'}
 				
 				#{if flash.error}
 					<p class="alert-message error">
@@ -47,47 +44,36 @@
 					<input type="submit" id="signin" class="btn primary" value="&{'secure.signin'}" />
 				</div>
 			#{/form}
+			
 			<div id="register-field">
-				<a href="#" class="btn" data-controls-modal="register-modal" data-backdrop="static">Create an account</a>
+				<a href="#" class="btn" data-controls-modal="register-modal" data-backdrop="static" data-keyboard="true">
+					&{'lbl_a_create_account_and_play'}
+				</a>
 				
 				<div id="register-modal" class="modal hide fade" style="display: none; ">
-		            #{form action:@Users.register(), id:'pm_home_form_register', enctype:'multipart/form-data', class:'form-stacked'}
+		            #{form action:@Users.register(), id:'pm_home_register_form', enctype:'multipart/form-data', class:'form-stacked'}
 			            <div class="modal-header">
 			              <a href="#" class="close">X</a>
-			              <h3>Create an account</h3>
+			              <h3>&{'lbl_a_create_account'}</h3>
 			            </div>
-			            <div id="pm_home_form_body_register" class="modal-body">
-			                #{crud.form class:'models.User'}
-			                	#{crud.custom 'currentRoom'} #{/crud.custom}
-			                	#{crud.custom 'isAdmin'} #{/crud.custom}
-			                #{/crud.form}
+			            <div id="pm_home_register_form_body" class="modal-body">
+				            #{include 'Users/register.html'/}
 			            </div>
 			            <div class="modal-footer">
-			              <input type="submit" id="register" class="btn primary" value="Create" />
+			              <input type="submit" id="register" class="btn primary" value="&{'lbl_a_create'}" />
 			            </div>
 		            #{/form}
-		          </div>
+		        </div>
 			</div>
 		</div>
 	</div>
 </div>
 </div>
+
+	<!-- Model - URL -->
+	<input name="url.register" value="@@{Users.register()}" type="hidden" class="pm-data" />
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-
-
-	// Capture Form Submit Event
-    $('#pm_home_form_register').submit(function() {
-    	console.log("test");
-		var formdata = $("#pm_home_form_register").serialize(); 
-		$.post('@{Users.register()}', formdata, function(result) {
-			$("#pm_home_form_body_register").html(result);
-		}); 
-
-    	// Don’t let the browser redirect
-    	return false;
-    });
-});
-</script>
+#{set 'moreScripts' }
+	<script src="/public/javascripts/pictomatch-home.js"></script>
+#{/set}
