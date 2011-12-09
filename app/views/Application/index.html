@@ -1,24 +1,61 @@
-#{extends 'mainConnected.html' /}
+﻿#{extends 'mainConnected.html' /}
 
-<div id="connected">
-&{"lbl_a_connected_as"} ${connectedUser.login}.
+<div class="content">
+	<div class="row">
+		<div class="span16">
+			<h2>&{"lbl_a_available_rooms_list"}</h2>
+			
+			<h3>&{"lbl_a_welcome_in_pictomatch"} !</h3>
+			<p>
+				&{"lbl_a_intro_choose_room_to_play"}.
+				&{"lbl_a_intro_room_explanation"}.
+				&{"lbl_a_intro_choose_and_click_join"}.
+				&{"lbl_a_intro_room_creation_possibility"}.
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span16">
+			<div id="rooms">
+				<table class="condensed-table bordered-table zebra-striped">
+		        <thead>
+		          <tr>
+		            <th>Nom</th>
+		            <th>Dictionnaire</th>
+		            <th>Niveau</th>
+		            <th>Joueurs</th>
+		            <th>&nbsp;</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        #{list items:availableRooms, as:'room'}
+		        	<tr>
+		            	<td>${room.name}</td>
+		            	<td>Animaux</td>
+		            	<td>Débutant</td>
+		            	<td>${room.users.size()} &{"lbl_a_user_s"} / ${room.nbMaxUser}</td>
+		            	<td><a href="/room/join/${room.id}" class="btn">&{"lbl_a_join_room"}</a></td>
+		         	</tr>
+				#{/list}
+		        </tbody>
+		      </table>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div id="rooms">
-	<h2>&{"lbl_a_available_rooms_list"}</h2>
-	<ul>
-		#{list items:availableRooms, as:'room'}
-		<li>${room.name} (${room.users.size()} &{"lbl_a_user_s"} / ${room.nbMaxUser})- <a href="/room/join/${room.id}">&{"lbl_a_join_room"}</a></li>
-		#{/list}
-	</ul>
-</div>
-
-
-<div id="users">
-	<h2>&{"lbl_a_registered_users_list"}</h2>
-	<ul>
-		#{list items:registeredUsers, as:'user'}
-		<li>${user.login} (${user.email})</li>
-		#{/list}
-	</ul>
-</div>
+	<div id="connected">
+	&{"lbl_a_connected_as"} ${connectedUser.login}.
+	</div>
+	
+	
+	
+	
+	<div id="users">
+		<h2>&{"lbl_a_registered_users_list"}</h2>
+		<ul>
+			#{list items:registeredUsers, as:'user'}
+			<li>${user.login} (${user.email})</li>
+			#{/list}
+		</ul>
+	</div>

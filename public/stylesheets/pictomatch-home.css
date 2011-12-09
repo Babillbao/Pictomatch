@@ -7,6 +7,7 @@
 	/* The content wrapper */
 	#pm_home_container .content {
 	    padding: 60px;
+	    padding-top: 70px;
 	    margin: 0 -60px; /* negative indent the amount of the padding to maintain the grid system */
 	    background-image: url('/public/images/home_background.jpg');
 	    background-repeat: no-repeat;
@@ -14,11 +15,11 @@
 	}
 	
 	#pm_home_container #signin-field {
-	    padding: 20px;
+	    padding-top: 20px;
 	    text-align: right;
 	}
 	#pm_home_container #register-field {
-	    padding: 20px;
+	    padding-top: 20px;
 	    text-align: right;
 	}
 	    

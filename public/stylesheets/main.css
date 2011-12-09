@@ -1,7 +1,7 @@
-.connected.container > div {
+#pm_connected_container.container > div {
     padding-top: 50px;	
 }
 
-body > div.connected.container img {
+body > div#pm_connected_container.container img {
 	width: 100%
 }

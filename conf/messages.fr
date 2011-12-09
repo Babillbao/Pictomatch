@@ -7,11 +7,17 @@ lbl_a_create = Créer
 lbl_a_create_account = Créer un compte
 lbl_a_create_account_and_play = Créer un compte et jouer
 lbl_a_drawing_room = Salle de jeu
-lbl_a_join_room = Rejoindre la salle de jeu
+lbl_a_join_room = Rejoindre le salon
 lbl_a_more_info = + Infos
 lbl_a_nb_max_players = Nombre de joueurs max
 lbl_a_registered_users_list = Liste des utilisateurs enregistrés
 lbl_a_user_s = utilisateur(s)
+lbl_a_welcome_in_pictomatch = Bienvenue dans PictoMatch
+
+lbl_a_intro_choose_room_to_play = Choisissez une salle de jeu pour commencer une partie
+lbl_a_intro_room_explanation = Chaque salon est caractérisé par un dictionnaire de mots, définissant son thème et son niveau de difficulté
+lbl_a_intro_choose_and_click_join = Une fois votre choix effectué, cliquez sur "Rejoindre le salon" pour rejoindre la partie
+lbl_a_intro_room_creation_possibility = Vous pouvez également créer votre propre salon en cliquant sur "Créer votre salon"
 
 #SECURE module
 secure.username = Identifiant Utilisateur

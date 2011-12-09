@@ -1,19 +1,20 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
+import java.util.List;
 
-import java.util.*;
-
-import models.*;
+import models.DrawingRoom;
+import models.User;
 
 public class Application extends LoggedApplication {
 
     public static void index() {
+    	User connectedUser = getConnectedUser();
+    	
+    	connectedUser.join(null);
+    	refreshConnectedUser(connectedUser);
+    	
         List<DrawingRoom> availableRooms = DrawingRoom.find("order by name ASC").fetch();
         List<User> registeredUsers = User.find("order by login ASC").fetch();
-        
-        User connectedUser = getConnectedUser();
         
     	render(availableRooms, registeredUsers, connectedUser);
     }
