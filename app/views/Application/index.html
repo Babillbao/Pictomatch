@@ -33,8 +33,8 @@
 		        #{list items:availableRooms, as:'room'}
 		        	<tr>
 		            	<td>${room.name}</td>
-		            	<td>Animaux</td>
-		            	<td>Débutant</td>
+		            	<td>${room.dictionnary.name}</td>
+		            	<td>&{room.dictionnary.level.key}</td>
 		            	<td>${room.users.size()} &{"lbl_a_user_s"} / ${room.nbMaxUser}</td>
 		            	<td><a href="/room/join/${room.id}" class="btn">&{"lbl_a_join_room"}</a></td>
 		         	</tr>

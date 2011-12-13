@@ -1,9 +1,12 @@
 #{extends 'mainConnected.html' /}
 
 <div id="room">
-	<h2>&{"lbl_a_drawing_room"} : ${selectedRoom.name} - Animaux (&{"lbl_a_room_level"} : Débutant)</h2>
+	<h2>&{"lbl_a_drawing_room"} : ${selectedRoom.name} - ${selectedRoom.dictionnary.name} (&{"lbl_a_room_level"} : &{selectedRoom.dictionnary.level.key})</h2>
 	<p>
-		&{"lbl_a_nb_max_players"} : ${selectedRoom.nbMaxUser}
+		&{"lbl_a_nb_max_players"} : ${selectedRoom.nbMaxUser} - Mots :
+		#{list items:selectedRoom.dictionnary.words, as:'word'}
+			${word.value}
+		#{/list}
 	</p>
 </div>
 
