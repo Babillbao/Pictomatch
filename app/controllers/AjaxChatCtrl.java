@@ -3,7 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Chat;
-import models.Chat.Event;
+import models.DrawingRoom;
 import play.libs.F.IndexedEvent;
 import play.mvc.Controller;
 
@@ -22,7 +22,26 @@ public class AjaxChatCtrl extends Controller {
 	}
 	
     public static void write(Long roomId, String userLogin, String message) {
-        Chat.get(roomId).write(userLogin, message);
+    	DrawingRoom room = DrawingRoom.get(roomId);
+    	
+    	//if(!joueursGagnants.contains(pseudo))
+		//{
+			boolean isAnswer = /*(compteur.estEnPause) ? false : */room.dictionnary.isAnswer(message);
+			if(!isAnswer)
+				Chat.get(roomId).write(userLogin, message);
+			else
+			{
+				Chat.get(roomId).write(userLogin, "youhouh !!");
+				//chat.addMessage(pseudo, " a trouvé la solution !! (+ "+(dictionnaire.getPointsParMot()-joueursGagnants.size())+" points)", MessageChat.STYLE_GAGNE);
+				/*int coeffPointsDessinateur = (joueursGagnants.size()*2 > 0) ? joueursGagnants.size()*2 : 1;
+				listeUtilisateurs.addPointDessinTrouve(dictionnaire.getPointParDessinTrouve()/coeffPointsDessinateur);
+				listeUtilisateurs.addPoint(pseudo, dictionnaire.getPointsParMot()-(this.joueursGagnants.size()));
+				this.joueursGagnants.add(pseudo);
+
+				if(this.joueursGagnants.size() == 3 || this.joueursGagnants.size() == this.listeUtilisateurs.size()-1)		
+					setNouveauTour();*/
+			}
+		//}
     }
     
     public static void listen(Long roomId, Long lastReceivedMsgId) {        

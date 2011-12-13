@@ -2,13 +2,16 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import play.data.validation.Required;
 import play.data.validation.Unique;
+import utils.AnswerComparator;
 
 @Entity
 public class Dictionnary extends BaseModel {
@@ -27,12 +30,29 @@ public class Dictionnary extends BaseModel {
 	@OneToMany(mappedBy="dictionnary", cascade=CascadeType.ALL)
 	public List<Word> words = new ArrayList<Word>();
 	
-
+	@Transient
+	private AnswerComparator answerComparator;
+	
+	
+	
 	@Override
 	public String toString() {
 		return name + " - " + level;
 	}
 	
+	
+	public boolean isAnswer(String message) {
+		if(answerComparator == null) {
+			answerComparator = AnswerComparator.getInstance(new Locale(language));
+		}
+		
+		//if(this.indiceMotCourant != -1)
+		//{
+			String currentWordValue = words.get(0).value;
+			int result = answerComparator.compare(currentWordValue, message);
+		//}
+		return (result == 0);
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
 package models;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import play.db.jpa.Model;
@@ -29,11 +30,11 @@ public class BaseModel extends Model {
 		return EqualsBuilder.reflectionEquals(this, other);
 	}
 	
-//	/**
-//	 * Use apache commons to generated hashCode by reflection.
-//	 */
-//	@Override
-//	public int hashCode() {
-//		return HashCodeBuilder.reflectionHashCode(this);
-//	}
+	/**
+	 * Use apache commons to generated hashCode by reflection.
+	 */
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
 }

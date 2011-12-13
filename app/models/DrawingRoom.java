@@ -1,7 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -51,4 +53,20 @@ public class DrawingRoom extends BaseModel {
 	public String toString() {
 		return name + " (" + nbMaxUser + ")";
 	}
+	
+
+    // ~~~~~~~~~ Chat room factory
+
+    static Map<Long, DrawingRoom> instances = new HashMap<Long, DrawingRoom>();
+    public static DrawingRoom get(Long roomId) {
+    	DrawingRoom instance;
+        
+    	if(instances.containsKey(roomId)) {
+    		instance = instances.get(roomId);
+        } else {
+        	instance = DrawingRoom.findById(roomId);
+        	instances.put(roomId, instance);
+        }
+        return instance.merge();
+    }
 }
