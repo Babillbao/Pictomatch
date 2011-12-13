@@ -1,11 +1,15 @@
 package models;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import play.libs.*;
-import play.libs.F.*;
+import play.libs.F.ArchivedEventStream;
+import play.libs.F.EventStream;
+import play.libs.F.IndexedEvent;
+import play.libs.F.Promise;
 
 public class Chat {
     
@@ -37,6 +41,13 @@ public class Chat {
             return;
         }
         chatEvents.publish(new MessageEvent(userLogin, text));
+    }
+    
+    /**
+     * Called when a user finds the correct answer int the chat.
+     */
+    public void findAnswer(String userLogin, int reward) {
+    	chatEvents.publish(new FoundAnswerEvent(userLogin, reward));
     }
     
     /**
@@ -96,6 +107,19 @@ public class Chat {
             this.text = text;
         }
         
+    }
+    
+    public static class FoundAnswerEvent extends Event {
+    	
+    	final public String userLogin;
+    	final public int reward;
+    	
+    	public FoundAnswerEvent(String userLogin, int reward) {
+    		super("foundAnswer");
+    		this.userLogin = userLogin;
+    		this.reward = reward;
+    	}
+    	
     }
     
     // ~~~~~~~~~ Chat room factory

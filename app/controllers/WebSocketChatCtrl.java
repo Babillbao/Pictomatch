@@ -40,15 +40,16 @@ public class WebSocketChatCtrl extends WebSocketController {
             
             // Case: New message in the chat instance (impl 1)
             for(String userMessage: TextFrame.match(e._1)) {
-            	//if(!joueursGagnants.contains(pseudo))
-        		//{
+            	if(!room.winnerLogins.contains(userLogin))
+        		{
         			boolean isAnswer = /*(compteur.estEnPause) ? false : */room.dictionnary.isAnswer(userMessage);
         			if(!isAnswer) {
         				chat.write(userLogin, userMessage);
         			} else {
-        				chat.write(userLogin, "youhouh1 !!");
+        				chat.findAnswer(userLogin, (room.dictionnary.level.foundReward - room.winnerLogins.size()));
+        				room.winnerLogins.add(userLogin);
         			}
-        		//}
+        		}
             }
             
             // Case: Someone subscribed to the chat instance
@@ -56,7 +57,7 @@ public class WebSocketChatCtrl extends WebSocketController {
                 outbound.send("subscribe:%s", event.userLogin);
             }
             
-            // Case: New message in the chat instance (impl 2)
+            // Case: Someone aded a new message
             for(Chat.MessageEvent event: ClassOf(Chat.MessageEvent.class).match(e._2)) {
         		outbound.send("message:%s:%s", event.userLogin, event.text);
 
@@ -65,6 +66,11 @@ public class WebSocketChatCtrl extends WebSocketController {
             // Case: Someone unsubscribed from the chat instance
             for(Chat.UnsubscribeEvent event: ClassOf(Chat.UnsubscribeEvent.class).match(e._2)) {
                 outbound.send("unsubscribe:%s", event.userLogin);
+            }
+            
+            // Case: Someone found the correct answer
+            for(Chat.FoundAnswerEvent event: ClassOf(Chat.FoundAnswerEvent.class).match(e._2)) {
+            	outbound.send("foundAnswer:%s", event.userLogin, event.reward);
             }
             
             // Case: The socket has been closed

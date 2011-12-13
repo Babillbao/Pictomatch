@@ -9,33 +9,37 @@
 	    <script type="text/html" id="pm_chat_message_tmpl">
         <% if(event.type == 'message') { %>
             <div class="pm_chat_message <%= event.userLogin == '${_connectedUser.login}' ? 'pm_chat_you' : '' %>">
-                <h2><%= event.userLogin %></h2>
+                <h2></h2>
                 <p>
-                    <%= event.text %>
+                    <%= event.userLogin %> &gt;&gt; <%= event.text %>
+                </p>
+            </div>
+        <% } %>
+		<% if(event.type == 'foundAnswer') { %>
+            <div class="pm_chat_message pm_chat_notice">
+                <p>
+                    <%= event.userLogin %> &gt;&gt; has found the correct answer !! ( + <%= event.reward %> points)
                 </p>
             </div>
         <% } %>
         <% if(event.type == 'subscribe') { %>
             <div class="pm_chat_message pm_chat_notice">
-                <h2></h2>
                 <p>
-                    <%= event.userLogin %> joined the room
+                    <%= event.userLogin %> &gt;&gt; joined the room
                 </p>
             </div>
         <% } %>
         <% if(event.type == 'unsubscribe') { %>
             <div class="pm_chat_message pm_chat_notice">
-                <h2></h2>
                 <p>
-                    <%= event.userLogin %> left the room
+                    <%= event.userLogin %> &gt;&gt; left the room
                 </p>
             </div>
         <% } %>
         <% if(event.type == 'quit') { %>
             <div class="pm_chat_message pm_chat_important">
-                <h2></h2>
                 <p>
-                    You are now disconnected!
+                    <%= event.userLogin %> &gt;&gt; You are now disconnected!
                 </p>
             </div>
         <% } %>

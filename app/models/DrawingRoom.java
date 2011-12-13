@@ -2,13 +2,16 @@ package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import play.data.validation.Required;
 import play.data.validation.Unique;
@@ -35,8 +38,11 @@ public class DrawingRoom extends BaseModel {
 	@ManyToOne
 	public Dictionnary dictionnary;
 	
-	/*public int currentRound;
-	public List<User> winners = new ArrayList<User>();*/
+	@Transient
+	public int currentRound;
+	
+	@Transient
+	public Set<String> winnerLogins = new HashSet<String>();
 	
 	
 	public DrawingRoom() {
@@ -46,7 +52,7 @@ public class DrawingRoom extends BaseModel {
 	public DrawingRoom(String name, int nbMaxUser) {
 		this.name = name;
 		this.nbMaxUser = nbMaxUser;
-		//this.currentRound = 1;
+		this.currentRound = 1;
 	}
 	
 	@Override

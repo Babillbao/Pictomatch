@@ -30,7 +30,7 @@ public class AnswerComparator implements Comparator<String> {
 	 * Comparison method.
 	 */
 	public int compare(String currentWordValue, String message) {
-		System.out.println("LOCAAAAAAALE :" + locale);
+		
 		// Init of a collator depending on dictionnary's locale.
 	    Collator compareOperator = Collator.getInstance (locale);    
 	    

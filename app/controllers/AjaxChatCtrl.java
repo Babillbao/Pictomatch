@@ -22,16 +22,18 @@ public class AjaxChatCtrl extends Controller {
 	}
 	
     public static void write(Long roomId, String userLogin, String message) {
+    	Chat chat = Chat.get(roomId);
     	DrawingRoom room = DrawingRoom.get(roomId);
     	
-    	//if(!joueursGagnants.contains(pseudo))
-		//{
+    	if(!room.winnerLogins.contains(userLogin))
+		{
 			boolean isAnswer = /*(compteur.estEnPause) ? false : */room.dictionnary.isAnswer(message);
 			if(!isAnswer)
-				Chat.get(roomId).write(userLogin, message);
+				chat.write(userLogin, message);
 			else
 			{
-				Chat.get(roomId).write(userLogin, "youhouh !!");
+				chat.findAnswer(userLogin, (room.dictionnary.level.foundReward - room.winnerLogins.size()));
+				room.winnerLogins.add(userLogin);
 				//chat.addMessage(pseudo, " a trouvé la solution !! (+ "+(dictionnaire.getPointsParMot()-joueursGagnants.size())+" points)", MessageChat.STYLE_GAGNE);
 				/*int coeffPointsDessinateur = (joueursGagnants.size()*2 > 0) ? joueursGagnants.size()*2 : 1;
 				listeUtilisateurs.addPointDessinTrouve(dictionnaire.getPointParDessinTrouve()/coeffPointsDessinateur);
@@ -41,7 +43,7 @@ public class AjaxChatCtrl extends Controller {
 				if(this.joueursGagnants.size() == 3 || this.joueursGagnants.size() == this.listeUtilisateurs.size()-1)		
 					setNouveauTour();*/
 			}
-		//}
+		}
     }
     
     public static void listen(Long roomId, Long lastReceivedMsgId) {        
